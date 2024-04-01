@@ -4,21 +4,6 @@ on:
   push:
 
 jobs:
-  Explore-GitHub-Actions:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Display event information
-        run: |
-          echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-          echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-          echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v4
-      - name: List files in the repository
-        run: ls ${{ github.workspace }}
-      - name: Display job status
-        run: echo "🍏 This job's status is ${{ job.status }}."
-
   Build-Actions:
     runs-on: ubuntu-latest
     steps:

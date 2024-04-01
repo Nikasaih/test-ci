@@ -38,5 +38,9 @@ jobs:
             chmod 600 ~/.ssh/id_rsa
           
         - name: Connect to host and update image
+          env:
+            PROD_SSH_KEY_FILE: ~/.ssh/iam_rsa
+            PROD_HOST: ${{ secrets.PROD_HOST }}
+            PROD_USER: ${{ secrets.PROD_USER }}
           run: |  
-            ssh ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }} -i ~/.ssh/iam_rsa "sh /updateIamImage.sh"
+            ssh $PROD_USER@$PROD_HOST -i $PROD_SSH_KEY_FILE "sh /updateIamImage.sh"

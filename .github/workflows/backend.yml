@@ -30,11 +30,11 @@ jobs:
       needs: Build-Actions
       steps:
         - name: Fetch SSH key
-        - run: |
+          run: |
             mkdir -p ~/.ssh
             echo ${{ secrets.PROD_SSH_KEY }} > ~/.ssh/id_rsa
             chmod 600 ~/.ssh/id_rsa
           
         - name: Connect to host and update image
-        - run: |  
+          run: |  
             ssh ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }} -i ~/.ssh/iam_rsa "sh /updateIamImage.sh"

@@ -36,6 +36,7 @@ jobs:
             PROD_USER: ${{ secrets.PROD_USER }}
           run: |  
             mkdir -p ~/.ssh
+            chmod 777 ~/.ssh
             echo $PROD_SSH_KEY > $PROD_SSH_KEY_FILE
             chmod 600 $PROD_SSH_KEY_FILE
             echo $PROD_SSH_KEY_FILE

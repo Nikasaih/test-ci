@@ -26,15 +26,15 @@ jobs:
         uses: actions/checkout@v2
       - name: Build the Docker image
         run: |
-        NAMESPACE=nikasaih/test-ci/test
-        IMAGE_NAME=iam
-        docker build -t ghcr.io/$NAMESPACE/$IMAGE_NAME:latest .
+          NAMESPACE=nikasaih/test-ci/test
+          IMAGE_NAME=iam
+          docker build -t ghcr.io/$NAMESPACE/$IMAGE_NAME:latest .
       - name: login to registry
         run: |
           CR_PAT=${{ secrets.REGISTRYTOKEN }}
           echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin
       - name: Push Docker image to registry
         run: |
-        NAMESPACE=nikasaih/test-ci/test
-        IMAGE_NAME=iam
-        docker push ghcr.io/$NAMESPACE/$IMAGE_NAME:latest
+          NAMESPACE=nikasaih/test-ci/test
+          IMAGE_NAME=iam
+          docker push ghcr.io/$NAMESPACE/$IMAGE_NAME:latest

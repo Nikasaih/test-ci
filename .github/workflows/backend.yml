@@ -38,4 +38,8 @@ jobs:
             mkdir -p ~/.ssh
             echo $PROD_SSH_KEY > $PROD_SSH_KEY_FILE
             chmod 600 $PROD_SSH_KEY_FILE
+            echo $PROD_SSH_KEY_FILE
+            echo $PROD_HOST
+            echo $PROD_USER
+
             ssh $PROD_USER@$PROD_HOST -i $PROD_SSH_KEY_FILE "sh /updateIamImage.sh"

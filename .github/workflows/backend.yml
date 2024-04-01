@@ -29,18 +29,14 @@ jobs:
       runs-on: ubuntu-latest
       needs: Build-Actions
       steps:
-        - name: Fetch SSH key
-          env:
-            PROD_SSH_KEY: ${{secrets.PROD_SSH_KEY}}
-          run: |
-            mkdir -p ~/.ssh
-            echo $PROD_SSH_KEY > ~/.ssh/id_rsa
-            chmod 600 ~/.ssh/id_rsa
-          
         - name: Connect to host and update image
           env:
+            PROD_SSH_KEY: ${{secrets.PROD_SSH_KEY}}
             PROD_SSH_KEY_FILE: ~/.ssh/iam_rsa
             PROD_HOST: ${{ secrets.PROD_HOST }}
             PROD_USER: ${{ secrets.PROD_USER }}
           run: |  
+            mkdir -p ~/.ssh
+            echo $PROD_SSH_KEY > $PROD_SSH_KEY_FILE
+            chmod 600 $PROD_SSH_KEY_FILE
             ssh $PROD_USER@$PROD_HOST -i $PROD_SSH_KEY_FILE "sh /updateIamImage.sh"

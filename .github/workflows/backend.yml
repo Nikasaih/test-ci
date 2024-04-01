@@ -20,14 +20,14 @@ jobs:
   Build-Actions:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: setup namespace
-    - run: NAMESPACE=nikasaih/test-ci/test
-    - run: IMAGE_NAME=iam
-    - name: Build the Docker image
-    - run: docker build -t ghcr.io/$NAMESPACE/$IMAGE_NAME:latest .
-    - name: login to registry #todo replace the token by a secret
-    - run: CR_PAT=${{ secrets.REGISTRYTOKEN }}
-    - run: echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin
-    - run: docker push ghcr.io/$NAMESPACE/$IMAGE_NAME:latest
+      - uses: actions/checkout@v2
+      - name: setup namespace
+      - run: NAMESPACE=nikasaih/test-ci/test
+      - run: IMAGE_NAME=iam
+      - name: Build the Docker image
+      - run: docker build -t ghcr.io/$NAMESPACE/$IMAGE_NAME:latest .
+      - name: login to registry #todo replace the token by a secret
+      - run: CR_PAT=${{ secrets.REGISTRYTOKEN }}
+      - run: echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin
+      - run: docker push ghcr.io/$NAMESPACE/$IMAGE_NAME:latest
 

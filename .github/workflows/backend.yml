@@ -14,6 +14,7 @@ jobs:
           NAMESPACE=${{ secrets.NAMESPACE }}
           IMAGE_NAME=${{ secrets.IAM_IMAGE_NAME }}
           docker buildx build --platform linux/arm64 -t ghcr.io/$NAMESPACE/arm64/$IMAGE_NAME:latest . 
+          docker buildx build --platform linux/amd64 -t ghcr.io/$NAMESPACE/amd64/$IMAGE_NAME:latest . 
       - name: login to registry
         run: |
           CR_PAT=${{ secrets.REGISTRYTOKEN }}
@@ -23,6 +24,8 @@ jobs:
           NAMESPACE=${{ secrets.NAMESPACE }}
           IMAGE_NAME=${{ secrets.IAM_IMAGE_NAME }}
           docker push ghcr.io/$NAMESPACE/arm64/$IMAGE_NAME:latest
+          docker push ghcr.io/$NAMESPACE/amd64/$IMAGE_NAME:latest
+
 
   Deploy-Prod-Action:
       name: Deploy

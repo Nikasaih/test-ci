@@ -10,7 +10,7 @@ RUN chmod 777 /app/gradlew
 RUN ./gradlew build
 
 # Stage 2: Run the application using ARM64-based image
-FROM arm64v8/openjdk:21-jdk-slim AS runner
+FROM amd64/openjdk:21-jdk-slim AS runner
 
 # Copy built application from builder stage
 COPY --from=builder /app/build /app/build

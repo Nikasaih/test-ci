@@ -1,5 +1,5 @@
 #FROM eclipse-temurin:21-jdk-alpine
-FROM openjdk:21-jdk-slim-buster
+FROM openjdk:21
 WORKDIR /app
 COPY . .
 RUN chmod 777 /app/gradlew
